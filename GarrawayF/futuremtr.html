@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garraway F - 未来をつくるアイデアたち</title>
+    <!-- Google Fonts: 柔らかい印象の丸ゴシック体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons: 親しみやすいアイコン -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        :root {
+            /* パステルカラーパレット */
+            --primary-bg: #fdfbf7;
+            --text-color: #4a4a4a;
+            --accent-pink: #ffcdd2;   /* 共に生きる */
+            --accent-orange: #ffe0b2; /* 躍動する */
+            --accent-green: #c8e6c9;  /* 環境と調和 */
+            --accent-blue: #b3e5fc;   /* しなやかに立て直す */
+            
+            --card-bg-pink: #fff5f6;
+            --card-bg-orange: #fffaf0;
+            --card-bg-green: #f1f8f1;
+            --card-bg-blue: #f0faff;
+            
+            --border-radius: 16px;
+        }
+
+        body {
+            font-family: 'Zen Maru Gothic', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+        }
+
+        /* 共通レイアウト */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            color: #333;
+            text-align: center;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        /* ヘッダーエリア */
+        header {
+            background: linear-gradient(135deg, #fff5f6 0%, #f0faff 100%);
+            padding: 80px 0 60px;
+            text-align: center;
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #555;
+            letter-spacing: 0.05em;
+        }
+
+        header p.subtitle {
+            font-size: 1.1rem;
+            color: #777;
+        }
+
+        /* Garraway F の未来セクション */
+        .intro-box {
+            background: #fff;
+            padding: 50px 40px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-top: -30px;
+            position: relative;
+            z-index: 10;
+            text-align: center;
+        }
+
+        .intro-box p {
+            font-size: 1.05rem;
+            margin-bottom: 0;
+            line-height: 2;
+        }
+        
+        .intro-highlight {
+            color: #ff8a65;
+            font-weight: 700;
+            background: linear-gradient(transparent 60%, #ffe0b2 60%);
+            padding: 0 4px;
+        }
+
+        /* マトリクス図表示エリア */
+        .matrix-image-container {
+            margin: 40px auto 10px;
+            max-width: 800px;
+            background-color: #f9f9f9;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px dashed #eee; /* 画像がない時の枠線 */
+        }
+
+        .matrix-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* 画像読み込みエラー時のフォールバック（プレビュー用） */
+        .matrix-image-container img:not([src]):not([srcset]),
+        .matrix-image-container img[src=""],
+        .matrix-image-container img[style*="display: none"] {
+            padding: 100px 20px;
+            color: #999;
+            font-size: 0.9rem;
+            content: "ここにマトリクス図の画像 (image_284c7d.png) が表示されます";
+        }
+
+        /* 4つのカテゴリ概要 */
+        .category-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 50px;
+        }
+
+        .cat-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            border: 2px solid transparent;
+            transition: transform 0.3s;
+        }
+        
+        .cat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .cat-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* カテゴリごとの色設定 */
+        .cat-pink { border-color: var(--accent-pink); color: #e57373; }
+        .cat-orange { border-color: var(--accent-orange); color: #ffb74d; }
+        .cat-green { border-color: var(--accent-green); color: #81c784; }
+        .cat-blue { border-color: var(--accent-blue); color: #4fc3f7; }
+
+        /* 詳細セクション共通 */
+        .detail-section {
+            padding: 50px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .section-desc {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            color: #666;
+        }
+
+        .idea-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .idea-card {
+            background: #fff;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            transition: transform 0.2s ease;
+        }
+
+        .idea-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .idea-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .idea-text {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* セクションごとの背景とアクセント */
+        .bg-pink { background-color: var(--card-bg-pink); }
+        .bg-orange { background-color: var(--card-bg-orange); }
+        .bg-green { background-color: var(--card-bg-green); }
+        .bg-blue { background-color: var(--card-bg-blue); }
+
+        .text-pink { color: #e57373; }
+        .text-orange { color: #ff9800; }
+        .text-green { color: #66bb6a; }
+        .text-blue { color: #29b6f6; }
+
+        /* まとめ */
+        .summary-section {
+            background: #fff;
+            text-align: center;
+            padding: 80px 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .summary-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            font-size: 0.8rem;
+            color: #999;
+            background: #fdfbf7;
+        }
+
+        /* レスポンシブ調整 */
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8rem; }
+            .category-overview { grid-template-columns: 1fr 1fr; }
+            .section-title { font-size: 1.5rem; }
+            .intro-box { padding: 30px 20px; }
+        }
+        @media (max-width: 480px) {
+            .category-overview { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ヘッダー -->
+    <header>
+        <div class="container">
+            <i class="ph ph-sparkle" style="font-size: 48px; color: #ffb74d;"></i>
+            <h1>Garraway F　未来をつくるアイデアたち</h1>
+            <p class="subtitle">みんなのアイデアで描く、これからの社会のかたち</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- コンテキスト -->
+        <section class="intro-box">
+            <h2>Garraway Fが掲げる「ありたい未来」</h2>
+            <p>
+                Garraway Fでは、ご来場の際、皆様の胸にある<br class="pc-only">
+                <span class="intro-highlight">「社会を良くするビジネスアイデア」</span>を言葉にしていただいています。<br>
+                <br>
+                その一つひとつの想いを大切に受け取り、丁寧に紐解いていくと、<br>
+                未来への希望を描き出す4つの羅針盤が見えてきました。<br>
+                このマトリクス図は、皆様の創造性が織りなす、私たちのありたい未来の姿そのものです。
+            </p>
+
+            <!-- マトリクス図配置エリア -->
+            <div class="matrix-image-container">
+                <img src="image_284c7d.png" alt="4象限マトリクス図：4つのまち（共に生きる、躍動する、環境と調和する、しなやかに立て直す）の相関図" onerror="this.style.display='none'; this.parentNode.innerHTML='<div style=\'padding:40px; color:#aaa;\'><i class=\'ph ph-image\' style=\'font-size:48px;\'></i><br>ここにマトリクス図（image_284c7d.png）が表示されます</div>'">
+            </div>
+        </section>
+
+        <!-- カテゴリ概要 -->
+        <section>
+            <!-- タイトルを追加 -->
+            <h2>４つの「ありたいまちの未来」のテーマ</h2>
+            <div class="category-overview">
+                <div class="cat-card cat-pink">
+                    <i class="ph ph-heart cat-icon"></i>
+                    <h3>共に生きるまち</h3>
+                    <p>人と人とが支え合い、<br>誰もが居場所を感じられる社会</p>
+                </div>
+                <div class="cat-card cat-orange">
+                    <i class="ph ph-rocket-launch cat-icon"></i>
+                    <h3>躍動するまち</h3>
+                    <p>地域の魅力が輝き、<br>新しい活力が生まれる社会</p>
+                </div>
+                <div class="cat-card cat-green">
+                    <i class="ph ph-plant cat-icon"></i>
+                    <h3>環境と調和するまち</h3>
+                    <p>テクノロジーと自然が共生し、<br>持続可能な社会</p>
+                </div>
+                <div class="cat-card cat-blue">
+                    <i class="ph ph-arrows-clockwise cat-icon"></i>
+                    <h3>しなやかに<br>立て直すまち</h3>
+                    <p>変化に適応し、<br>資源を大切に循環させる社会</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 詳細: 共に生きるまち -->
+    <section class="detail-section bg-pink">
+        <div class="container">
+            <h2 class="section-title text-pink">
+                <i class="ph ph-heart-straight"></i> 共に生きるまち
+            </h2>
+            <p class="section-desc">
+                多様な人々が手を取り合い、孤立することなく、それぞれのライフステージで輝けるコミュニティを目指すアイデアたちです。
+            </p>
+            <div class="idea-grid">
+                <div class="idea-card">
+                    <div class="idea-title text-pink"><i class="ph ph-chalkboard-teacher"></i> 教育DX / メタバース登校</div>
+                    <p class="idea-text">不登校支援や遠隔授業など、テクノロジーを用いた新しい学びの場の提供。メタバースなどの仮想空間を活用し、自分のペースで深く学べる環境をつくります。</p>
+                </div>
+                <div class="idea-card">
+                    <div class="idea-title text-pink"><i class="ph ph-users-three"></i> ヘルスケア・マッチング</div>
+                    <p class="idea-text">介護士不足の解消や、高齢者と若者のマッチングによる孤独対策。世代を超えた「住まい」や「生活」のシェアで、互いに支え合う関係性を築きます。</p>
+                </div>
+                <div class="idea-card">
+                    <div class="idea-title text-pink"><i class="ph ph-baby"></i> 子育てシェア / 育児サブスク</div>
+                    <p class="idea-text">地域全体での子育て支援や、定額制による育児コストの軽減。空き家の活用や食材のサブスクを通じ、社会全体で子供の成長を見守る仕組みです。</p>
+                </div>
+                <div class="idea-card">
+                    <div class="idea-title text-pink"><i class="ph ph-book-open-text"></i> リカレント教育（学び直し）</div>
+                    <p class="idea-text">社会人や高齢者に向けた再教育プラットフォームの提供。クラウドファンディングやサブスクを活用し、低コストで新しいスキルを習得できる機会を創出します。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 詳細: 躍動するまち -->
+    <section class="detail-section bg-orange">
+        <div class="container">
+            <h2 class="section-title text-orange">
+                <i class="ph ph-sun"></i> 躍動するまち
+            </h2>
+            <p class="section-desc">
+                地域の文化や資産を現代の価値観で再定義し、外からの人を呼び込みながら、内側からもエネルギーが溢れ出すアイデアたちです。
+            </p>
+            <div class="idea-grid">
+                <div class="idea-card">
+                    <div class="idea-title text-orange"><i class="ph ph-airplane-tilt"></i> インバウンド体験観光</div>
+                    <p class="idea-text">単なる観光ではなく、日本文化や伝統工芸を実際に「体験」させるコンテンツ。見るだけでなく、参加し深く知ることで、地域のファンを増やします。</p>
+                </div>
+                <div class="idea-card">
+                    <div class="idea-title text-orange"><i class="ph ph-house-line"></i> 空き家リノベーション活用</div>
+                    <p class="idea-text">古民家や空き家をホテル、カフェ、交流拠点として再生させ賑わいを作る。過疎地域の隠れた魅力を発信し、人が集まる新たなランドマークへと変えます。</p>
+                </div>
+                <div class="idea-card">
+                    <div class="idea-title text-orange"><i class="ph ph-confetti"></i> 伝統文化のエンタメ化</div>
+                    <p class="idea-text">祭りや伝統芸能を現代風にアレンジし、ライブ配信やイベントとして収益化。パトロン制度などを導入し、次世代への継承と経済的自立を目指します。</p>
+                </div>
+                <div class="idea-card">
+                    <div class="idea-title text-orange"><i class="ph ph-coins"></i> 地域通貨 / コミュニティアプリ</div>
+                    <p class="idea-text">地域内での経済循環や、住民同士の交流を促進するデジタルツール。楽しみながら金融リテラシーを高め、地域内でお金と感謝がめぐる仕組みを作ります。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 詳細: 環境と調和するまち -->
+    <section class="detail-section bg-green">
+        <div class="container">
+            <h2 class="section-title text-green">
+                <i class="ph ph-tree"></i> 環境と調和するまち
+            </h2>
+            <p class="section-desc">
+                最新のテクノロジーを駆使して、安全で快適な移動や暮らしを守りつつ、自然環境への負荷を最小限に抑えるアイデアたちです。
+            </p>
+            <div class="idea-grid">
+                <div class="idea-card">
+                    <div class="idea-title text-green"><i class="ph ph-car"></i> 地域版ライドシェア</div>
+                    <p class="idea-text">公共交通機関が不足する過疎地での、住民同士の相乗りや新たな移動手段。限られたリソースを分かち合い、誰でも自由に移動できる権利を守ります。</p>
+                </div>
+                <div class="idea-card">
+                    <div class="idea-title text-green"><i class="ph ph-robot"></i> 自動運転モビリティ</div>
+                    <p class="idea-text">高齢者の移動支援や物流の人手不足を解消する無人運転技術の導入。コミュニティバスなどにAIを導入し、持続可能な地域の「足」を確保します。</p>
+                </div>
+                <div class="idea-card">
+                    <div class="idea-title text-green"><i class="ph ph-shield-check"></i> 防災・防犯テック</div>
+                    <p class="idea-text">ドローンやAIカメラを活用した災害時の物資輸送や、不審者の検知システム。テクノロジーの目で地域を見守り、安心して暮らせる環境を提供します。</p>
+                </div>
+                <div class="idea-card">
+                    <div class="idea-title text-green"><i class="ph ph-bridge"></i> インフラ見守りAI</div>
+                    <p class="idea-text">老朽化する道路や橋の点検を効率化するデジタルソリューション。人手不足の中でも安全な社会基盤を維持するための、賢い守りの仕組みです。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 詳細: しなやかに立て直すまち -->
+    <section class="detail-section bg-blue">
+        <div class="container">
+            <h2 class="section-title text-blue">
+                <i class="ph ph-arrows-left-right"></i> しなやかに立て直すまち
+            </h2>
+            <p class="section-desc">
+                今ある資源を無駄にせず、形を変えて再利用したり、エネルギーを自給自足したりすることで、どんな変化にも適応できる強い地域を作るアイデアたちです。
+            </p>
+            <div class="idea-grid">
+                <div class="idea-card">
+                    <div class="idea-title text-blue"><i class="ph ph-plant"></i> スマート農業 / アグリテック</div>
+                    <p class="idea-text">ロボットやAI活用による省力化と、若者が参入しやすい農業ビジネスモデル。テクノロジーで農業のハードルを下げ、地域の食と雇用を守ります。</p>
+                </div>
+                <div class="idea-card">
+                    <div class="idea-title text-blue"><i class="ph ph-lightning"></i> エネルギー地産地消シェア</div>
+                    <p class="idea-text">余剰電力の個人間取引や、道路・空き地を活用した小規模発電システム。地域で作ったエネルギーを地域で使い、災害にも強い自立したまちを作ります。</p>
+                </div>
+                <div class="idea-card">
+                    <div class="idea-title text-blue"><i class="ph ph-recycle"></i> 廃材ものづくり</div>
+                    <p class="idea-text">廃棄される食材や廃材を、肥料や新たな製品として再資源化する仕組み。「捨てる」を「使う」に変え、新しい価値を生み出す循環型ビジネスです。</p>
+                </div>
+                <div class="idea-card">
+                    <div class="idea-title text-blue"><i class="ph ph-house"></i> サステナブル住宅</div>
+                    <p class="idea-text">環境負荷を減らし、自然エネルギーを活用した自律型の住環境整備。自然と共生しながら、長く快適に住み続けられる家づくりを推進します。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- まとめ -->
+    <section class="summary-section">
+        <div class="container summary-content">
+            <i class="ph ph-globe-stand" style="font-size: 48px; color: #aaa; margin-bottom: 20px;"></i>
+            <h3>未来への一歩は、ここから。</h3>
+            <p>
+                これら16のソリューション領域は、Garraway Fに集う皆様の「社会を良くしたい」という純粋な想いの結晶です。<br>
+                ひとつひとつのアイデアは小さな種かもしれませんが、それらが集まり、分類され、見える化されることで、<br>
+                私たちが進むべき未来の形がはっきりと見えてきます。
+            </p>
+            <p>
+                共に生き、躍動し、調和し、しなやかに。<br>
+                Garraway Fはこれからも、皆様のアイデアと共に新しい社会の可能性を広げていきます。
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; Garraway F - Social Issue Solutions Visualization</p>
+    </footer>
+
+</body>
+</html>
